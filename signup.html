@@ -15,12 +15,9 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
+            padding: 2rem 1rem;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -33,6 +30,7 @@
             top: -300px;
             right: -300px;
             animation: float 8s ease-in-out infinite;
+            z-index: 0;
         }
 
         body::after {
@@ -45,6 +43,7 @@
             bottom: -250px;
             left: -250px;
             animation: float 10s ease-in-out infinite;
+            z-index: 0;
         }
 
         @keyframes float {
@@ -52,18 +51,27 @@
             50% { transform: translateY(-30px) rotate(10deg); }
         }
 
+        .signup-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            position: relative;
+            z-index: 1;
+            padding: 2rem 0;
+        }
+
         .signup-container {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             border-radius: 30px;
-            padding: 4rem 3rem;
+            padding: 3rem 2.5rem;
             width: 100%;
             max-width: 550px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
             animation: slideUp 0.8s ease;
-            position: relative;
-            z-index: 1;
+            margin: auto;
         }
 
         @keyframes slideUp {
@@ -184,6 +192,7 @@
         .checkbox-group input[type="checkbox"] {
             width: auto;
             cursor: pointer;
+            transform: none;
         }
 
         .checkbox-group label {
@@ -299,8 +308,16 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .signup-wrapper {
+                padding: 1rem 0;
+            }
+
             .signup-container {
-                padding: 3rem 2rem;
+                padding: 2.5rem 1.5rem;
             }
             
             .logo {
@@ -318,93 +335,95 @@
     </style>
 </head>
 <body>
-    <div class="signup-container">
-        <div class="logo">InnovateDG</div>
-        <p class="welcome-text">Create your account and start your journey</p>
-        
-        <div class="bonus-banner">
-            <div class="bonus-title">🎉 Welcome Bonus!</div>
-            <div class="bonus-desc">Sign up today and get 2000 FREE credits + Premium trial for 30 days</div>
-        </div>
+    <div class="signup-wrapper">
+        <div class="signup-container">
+            <div class="logo">InnovateDG</div>
+            <p class="welcome-text">Create your account and start your journey</p>
+            
+            <div class="bonus-banner">
+                <div class="bonus-title">🎉 Welcome Bonus!</div>
+                <div class="bonus-desc">Sign up today and get 2000 FREE credits + Premium trial for 30 days</div>
+            </div>
 
-        <form action="https://api.web3forms.com/submit" method="POST">
-            <!-- Replace with your Access Key -->
-            <input type="hidden" name="access_key" value="bf8cc30d-f0ee-4db6-9969-843d2217b2b1">
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <!-- Replace with your Access Key -->
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
 
-            <!-- Honeypot Spam Protection -->
-            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                <!-- Honeypot Spam Protection -->
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" name="first_name" placeholder="John" required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="first_name" placeholder="John" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="last_name" placeholder="Doe" required>
+                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" name="last_name" placeholder="Doe" required>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
                 </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company Name (Optional)</label>
+                    <input type="text" id="company" name="company" placeholder="Your Company">
+                </div>
+
+                <div class="form-group">
+                    <label for="role">I'm interested in</label>
+                    <select id="role" name="interest" required>
+                        <option value="">Select an option</option>
+                        <option value="web-dev">Web Development</option>
+                        <option value="mobile-dev">Mobile App Development</option>
+                        <option value="ui-ux">UI/UX Design</option>
+                        <option value="ecommerce">E-Commerce Solutions</option>
+                        <option value="consulting">Digital Consulting</option>
+                        <option value="other">Other Services</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirm_password" placeholder="Re-enter your password" required>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
+                </div>
+
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+
+            <div class="divider">OR</div>
+
+            <div class="social-signup">
+                <button class="social-btn" type="button">🔵 Google</button>
+                <button class="social-btn" type="button">⚫ GitHub</button>
             </div>
 
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            <div class="login-link">
+                Already have an account? <a href="contact.html">Contact Us</a>
             </div>
 
-            <div class="form-group">
-                <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+            <div class="back-home">
+                <a href="index.html">← Back to Home</a>
             </div>
-
-            <div class="form-group">
-                <label for="company">Company Name (Optional)</label>
-                <input type="text" id="company" name="company" placeholder="Your Company">
-            </div>
-
-            <div class="form-group">
-                <label for="role">I'm interested in</label>
-                <select id="role" name="interest" required>
-                    <option value="">Select an option</option>
-                    <option value="web-dev">Web Development</option>
-                    <option value="mobile-dev">Mobile App Development</option>
-                    <option value="ui-ux">UI/UX Design</option>
-                    <option value="ecommerce">E-Commerce Solutions</option>
-                    <option value="consulting">Digital Consulting</option>
-                    <option value="other">Other Services</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Create a strong password" required>
-            </div>
-
-            <div class="form-group">
-                <label for="confirmPassword">Confirm Password</label>
-                <input type="password" id="confirmPassword" name="confirm_password" placeholder="Re-enter your password" required>
-            </div>
-
-            <div class="checkbox-group">
-                <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
-            </div>
-
-            <button type="submit" class="submit-btn">Create Account</button>
-        </form>
-
-        <div class="divider">OR</div>
-
-        <div class="social-signup">
-            <button class="social-btn" type="button">🔵 Google</button>
-            <button class="social-btn" type="button">⚫ GitHub</button>
-        </div>
-
-        <div class="login-link">
-            Already have an account? <a href="login.html">Log In</a>
-        </div>
-
-        <div class="back-home">
-            <a href="index.html">← Back to Home</a>
         </div>
     </div>
 

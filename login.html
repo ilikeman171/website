@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Innovate Digital Solutions</title>
+    <title>Contact Us | Innovate Digital Solutions</title>
     <style>
         * {
             margin: 0;
@@ -15,12 +15,9 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             padding: 2rem;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         body::before {
@@ -33,6 +30,7 @@
             top: -300px;
             right: -300px;
             animation: float 8s ease-in-out infinite;
+            z-index: 0;
         }
 
         body::after {
@@ -45,6 +43,7 @@
             bottom: -250px;
             left: -250px;
             animation: float 10s ease-in-out infinite;
+            z-index: 0;
         }
 
         @keyframes float {
@@ -52,18 +51,25 @@
             50% { transform: translateY(-30px) rotate(10deg); }
         }
 
-        .login-container {
+        .contact-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 4rem);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-container {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             border-radius: 30px;
             padding: 4rem 3rem;
             width: 100%;
-            max-width: 500px;
+            max-width: 600px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
             animation: slideUp 0.8s ease;
-            position: relative;
-            z-index: 1;
         }
 
         @keyframes slideUp {
@@ -89,8 +95,16 @@
         .welcome-text {
             text-align: center;
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 3rem;
+            margin-bottom: 1rem;
             font-size: 1.1rem;
+        }
+
+        .description {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
         }
 
         .bonus-badge {
@@ -99,7 +113,7 @@
             padding: 1rem 2rem;
             border-radius: 20px;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             font-weight: 700;
             font-size: 1rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -123,7 +137,7 @@
             font-size: 0.95rem;
         }
 
-        input {
+        input, textarea {
             width: 100%;
             padding: 1rem 1.2rem;
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -133,13 +147,19 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
-        input::placeholder {
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        input::placeholder, textarea::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
 
-        input:focus {
+        input:focus, textarea:focus {
             outline: none;
             border-color: #fff;
             background: rgba(255, 255, 255, 0.15);
@@ -148,24 +168,6 @@
 
         .hidden {
             display: none !important;
-        }
-
-        .forgot-password {
-            text-align: right;
-            margin-top: -0.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .forgot-password a {
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .forgot-password a:hover {
-            color: #fff;
-            text-decoration: underline;
         }
 
         .submit-btn {
@@ -193,65 +195,29 @@
             cursor: not-allowed;
         }
 
-        .divider {
-            text-align: center;
-            margin: 2rem 0;
-            color: rgba(255, 255, 255, 0.7);
-            position: relative;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 40%;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .divider::before { left: 0; }
-        .divider::after { right: 0; }
-
-        .social-login {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
             margin-bottom: 2rem;
         }
 
-        .social-btn {
-            padding: 1rem;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.1);
+        .contact-info h3 {
             color: #fff;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
         }
 
-        .social-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: #fff;
-            transform: translateY(-2px);
-        }
-
-        .signup-link {
-            text-align: center;
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.8rem;
         }
 
-        .signup-link a {
-            color: #fff;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .signup-link a:hover {
-            text-decoration: underline;
+        .info-icon {
+            font-size: 1.5rem;
         }
 
         .back-home {
@@ -271,66 +237,81 @@
         }
 
         @media (max-width: 768px) {
-            .login-container {
+            .contact-container {
                 padding: 3rem 2rem;
             }
             
             .logo {
                 font-size: 2rem;
             }
-
-            .social-login {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">InnovateDG</div>
-        <p class="welcome-text">Welcome back! Sign in to continue</p>
-        
-        <div class="bonus-badge">
-            🎁 Login Bonus: Get 1000 Credits Free!
-        </div>
-
-        <form action="https://api.web3forms.com/submit" method="POST">
-            <!-- Replace with your Access Key -->
-            <input type="hidden" name="access_key" value="bf8cc30d-f0ee-4db6-9969-843d2217b2b1">
-
-            <!-- Honeypot Spam Protection -->
-            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+    <div class="contact-wrapper">
+        <div class="contact-container">
+            <div class="logo">InnovateDG</div>
+            <p class="welcome-text">Get in Touch</p>
+            <p class="description">Have a question or want to work together? Send us a message and we'll get back to you within 24 hours.</p>
+            
+            <div class="bonus-badge">
+                🎁 Free Consultation Worth $500 for All Inquiries!
             </div>
 
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            <form action="https://api.web3forms.com/submit" method="POST">
+                <!-- Replace with your Access Key -->
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+
+                <!-- Honeypot Spam Protection -->
+                <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="How can we help you?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" placeholder="Tell us more about your project or inquiry..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+
+            <div class="contact-info">
+                <h3>Other Ways to Reach Us</h3>
+                <div class="info-item">
+                    <span class="info-icon">📧</span>
+                    <span>contact@innovatedg.com</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">📱</span>
+                    <span>+1 (555) 123-4567</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-icon">📍</span>
+                    <span>123 Innovation Street, Tech City, CA 94000</span>
+                </div>
             </div>
 
-            <div class="forgot-password">
-                <a href="#">Forgot Password?</a>
+            <div class="back-home">
+                <a href="index.html">← Back to Home</a>
             </div>
-
-            <button type="submit" class="submit-btn">Sign In</button>
-        </form>
-
-        <div class="divider">OR</div>
-
-        <div class="social-login">
-            <button class="social-btn" type="button">🔵 Google</button>
-            <button class="social-btn" type="button">⚫ GitHub</button>
-        </div>
-
-        <div class="signup-link">
-            Don't have an account? <a href="signup.html">Sign Up</a>
-        </div>
-
-        <div class="back-home">
-            <a href="index.html">← Back to Home</a>
         </div>
     </div>
 
@@ -339,7 +320,7 @@
         const submitBtn = document.querySelector('.submit-btn');
         
         form.addEventListener('submit', function(e) {
-            submitBtn.textContent = 'Signing In...';
+            submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
         });
     </script>
