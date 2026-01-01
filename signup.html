@@ -170,6 +170,10 @@
             color: #fff;
         }
 
+        .hidden {
+            display: none !important;
+        }
+
         .checkbox-group {
             display: flex;
             align-items: center;
@@ -210,6 +214,11 @@
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             background: linear-gradient(135deg, #fff, #f0f0f0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
 
         .divider {
@@ -318,10 +327,12 @@
             <div class="bonus-desc">Sign up today and get 2000 FREE credits + Premium trial for 30 days</div>
         </div>
 
-        <form id="signupForm" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE">
-            <input type="hidden" name="subject" value="New Sign Up">
-            <input type="hidden" name="from_name" value="InnovateDG Sign Up">
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <!-- Replace with your Access Key -->
+            <input type="hidden" name="access_key" value="bf8cc30d-f0ee-4db6-9969-843d2217b2b1">
+
+            <!-- Honeypot Spam Protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
             <div class="form-row">
                 <div class="form-group">
@@ -384,8 +395,8 @@
         <div class="divider">OR</div>
 
         <div class="social-signup">
-            <button class="social-btn">🔵 Google</button>
-            <button class="social-btn">⚫ GitHub</button>
+            <button class="social-btn" type="button">🔵 Google</button>
+            <button class="social-btn" type="button">⚫ GitHub</button>
         </div>
 
         <div class="login-link">
@@ -398,9 +409,10 @@
     </div>
 
     <script>
-        const form = document.getElementById('signupForm');
+        const form = document.querySelector('form');
         const password = document.getElementById('password');
         const confirmPassword = document.getElementById('confirmPassword');
+        const submitBtn = document.querySelector('.submit-btn');
         
         form.addEventListener('submit', function(e) {
             if (password.value !== confirmPassword.value) {
@@ -409,7 +421,6 @@
                 return;
             }
             
-            const submitBtn = form.querySelector('.submit-btn');
             submitBtn.textContent = 'Creating Account...';
             submitBtn.disabled = true;
         });

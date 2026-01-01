@@ -146,6 +146,10 @@
             transform: translateY(-2px);
         }
 
+        .hidden {
+            display: none !important;
+        }
+
         .forgot-password {
             text-align: right;
             margin-top: -0.8rem;
@@ -182,6 +186,11 @@
             transform: translateY(-3px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
             background: linear-gradient(135deg, #fff, #f0f0f0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
 
         .divider {
@@ -285,10 +294,12 @@
             🎁 Login Bonus: Get 1000 Credits Free!
         </div>
 
-        <form id="loginForm" action="https://api.web3forms.com/submit" method="POST">
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <!-- Replace with your Access Key -->
             <input type="hidden" name="access_key" value="bf8cc30d-f0ee-4db6-9969-843d2217b2b1">
-            <input type="hidden" name="subject" value="New Login Attempt">
-            <input type="hidden" name="from_name" value="InnovateDG Login">
+
+            <!-- Honeypot Spam Protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
             <div class="form-group">
                 <label for="email">Email Address</label>
@@ -310,8 +321,8 @@
         <div class="divider">OR</div>
 
         <div class="social-login">
-            <button class="social-btn">🔵 Google</button>
-            <button class="social-btn">⚫ GitHub</button>
+            <button class="social-btn" type="button">🔵 Google</button>
+            <button class="social-btn" type="button">⚫ GitHub</button>
         </div>
 
         <div class="signup-link">
@@ -324,10 +335,10 @@
     </div>
 
     <script>
-        const form = document.getElementById('loginForm');
+        const form = document.querySelector('form');
+        const submitBtn = document.querySelector('.submit-btn');
         
         form.addEventListener('submit', function(e) {
-            const submitBtn = form.querySelector('.submit-btn');
             submitBtn.textContent = 'Signing In...';
             submitBtn.disabled = true;
         });
