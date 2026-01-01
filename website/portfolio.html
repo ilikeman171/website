@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Innovate Digital Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #fff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-solid {
+            background: #fff;
+            color: #667eea;
+            border: 2px solid #fff;
+        }
+
+        .btn-solid:hover {
+            background: transparent;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .page-hero {
+            padding: 12rem 5% 6rem;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .filter-section {
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            background: transparent;
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .portfolio-section {
+            padding: 4rem 5% 8rem;
+        }
+
+        .portfolio-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .portfolio-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            animation: fadeIn 0.8s ease both;
+        }
+
+        .portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+        .portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+        .portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+        .portfolio-item:nth-child(4) { animation-delay: 0.4s; }
+        .portfolio-item:nth-child(5) { animation-delay: 0.5s; }
+        .portfolio-item:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.05);
+        }
+
+        .portfolio-content {
+            padding: 2.5rem;
+        }
+
+        .portfolio-category {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-description {
+            opacity: 0.9;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .case-studies {
+            padding: 6rem 5%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+        }
+
+        .case-study-card {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .case-study-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .case-study-info h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .case-study-info .client {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .case-study-info p {
+            opacity: 0.9;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-study-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            opacity: 0.9;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .page-hero h1 { font-size: 2.5rem; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .case-study-header { grid-template-columns: 1fr; }
+            .filter-buttons { flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">InnovateDG</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-solid">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <h1>Our Portfolio</h1>
+        <p>Explore our collection of successful projects that showcase our expertise, creativity, and commitment to delivering exceptional digital experiences.</p>
+    </section>
+
+    <section class="filter-section">
+        <div class="filter-buttons">
+            <button class="filter-btn active">All Projects</button>
+            <button class="filter-btn">Web Development</button>
+            <button class="filter-btn">Mobile Apps</button>
+            <button class="filter-btn">UI/UX Design</button>
+            <button class="filter-btn">E-Commerce</button>
+        </div>
+    </section>
+
+    <section class="portfolio-section">
+        <div class="portfolio-grid">
+            <div class="portfolio-item">
+                <div class="portfolio-image">🛒</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">E-Commerce</span>
+                    <h3 class="portfolio-title">Luxe Fashion Store</h3>
+                    <p class="portfolio-description">A sophisticated e-commerce platform featuring seamless checkout, personalized recommendations, and advanced inventory management for a premium fashion retailer.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                        <span class="tag">Stripe</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">📱</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Mobile App</span>
+                    <h3 class="portfolio-title">FitTrack Pro</h3>
+                    <p class="portfolio-description">A comprehensive fitness tracking application with real-time workout analytics, nutrition planning, and social features to keep users motivated and engaged.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">React Native</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">GraphQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">🏦</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Web Development</span>
+                    <h3 class="portfolio-title">SecureBank Dashboard</h3>
+                    <p class="portfolio-description">Enterprise-level banking dashboard with advanced security features, real-time transaction monitoring, and comprehensive financial analytics for institutional clients.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Vue.js</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">🎓</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">UI/UX Design</span>
+                    <h3 class="portfolio-title">EduLearn Platform</h3>
+                    <p class="portfolio-description">An intuitive learning management system designed for modern education, featuring interactive courses, progress tracking, and collaborative learning tools.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Figma</span>
+                        <span class="tag">Angular</span>
+                        <span class="tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">🏠</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Web Development</span>
+                    <h3 class="portfolio-title">Realty Connect</h3>
+                    <p class="portfolio-description">A powerful real estate marketplace connecting buyers, sellers, and agents with advanced search capabilities, virtual tours, and automated property valuation.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Next.js</span>
+                        <span class="tag">Mapbox</span>
+                        <span class="tag">Redis</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">🍽️</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Mobile App</span>
+                    <h3 class="portfolio-title">FoodHub Delivery</h3>
+                    <p class="portfolio-description">On-demand food delivery platform with real-time order tracking, integrated payment systems, and intelligent restaurant recommendations based on user preferences.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Flutter</span>
+                        <span class="tag">Go</span>
+                        <span class="tag">Google Maps</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">💼</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Web Development</span>
+                    <h3 class="portfolio-title">TalentHub Pro</h3>
+                    <p class="portfolio-description">Professional recruitment platform featuring AI-powered candidate matching, automated screening processes, and comprehensive talent analytics for HR departments.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Django</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Elasticsearch</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">🎵</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">Mobile App</span>
+                    <h3 class="portfolio-title">MusicStream Plus</h3>
+                    <p class="portfolio-description">Revolutionary music streaming service with personalized playlists, social sharing features, and high-fidelity audio quality for audiophile enthusiasts.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Swift</span>
+                        <span class="tag">Kotlin</span>
+                        <span class="tag">AWS Lambda</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-item">
+                <div class="portfolio-image">🚗</div>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">E-Commerce</span>
+                    <h3 class="portfolio-title">AutoParts Marketplace</h3>
+                    <p class="portfolio-description">Comprehensive automotive parts marketplace with VIN-based compatibility checking, detailed product specifications, and integrated shipping solutions.</p>
+                    <div class="portfolio-tags">
+                        <span class="tag">Shopify</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="case-studies">
+        <h2 class="section-title">Featured Case Studies</h2>
+        
+        <div class="case-study-card">
+            <div class="case-study-header">
+                <div class="case-study-info">
+                    <h3>TechCorp Digital Transformation</h3>
+                    <p class="client">Client: TechCorp Industries</p>
+                    <p>We partnered with TechCorp to completely overhaul their digital infrastructure, implementing modern cloud-based solutions and creating a unified platform that streamlined operations across all departments.</p>
+                    <p>The project involved migrating legacy systems, redesigning user interfaces for better accessibility, and implementing advanced analytics to provide actionable business insights.</p>
+                </div>
+                <div class="case-study-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">300%</div>
+                        <div class="stat-label">Increase in Efficiency</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">$2.5M</div>
+                        <div class="stat-label">Cost Savings</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">User Satisfaction</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">6 Months</div>
+                        <div class="stat-label">Project Duration</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-study-card">
+            <div class="case-study-header">
+                <div class="case-study-info">
+                    <h3>Global Retail Expansion</h3>
+                    <p class="client">Client: Luxe Fashion Group</p>
+                    <p>Luxe Fashion Group needed a scalable e-commerce solution to support their international expansion. We delivered a multi-currency, multi-language platform that seamlessly handles millions of transactions.</p>
+                    <p>Our solution included advanced inventory management, personalized shopping experiences, and integration with their existing ERP systems to ensure smooth operations across all markets.</p>
+                </div>
+                <div class="case-study-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">450%</div>
+                        <div class="stat-label">Sales Growth</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Countries Reached</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">5M+</div>
+                        <div class="stat-label">Monthly Users</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>InnovateDG</h3>
+                <p>Empowering businesses with cutting-edge digital solutions since 2015.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Mobile Apps</a></li>
+                    <li><a href="#">UI/UX Design</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 InnovateDG. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

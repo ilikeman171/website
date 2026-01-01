@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Innovate Digital Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #fff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid #fff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+        }
+
+        .btn-outline:hover {
+            background: #fff;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-solid {
+            background: #fff;
+            color: #667eea;
+            border: 2px solid #fff;
+        }
+
+        .btn-solid:hover {
+            background: transparent;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .page-hero {
+            padding: 12rem 5% 6rem;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 6rem 5%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .story-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-text h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            font-weight: 800;
+        }
+
+        .story-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            opacity: 0.95;
+        }
+
+        .story-image {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mission Section */
+        .mission-section {
+            padding: 6rem 5%;
+        }
+
+        .mission-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .mission-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .mission-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .mission-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .mission-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 6rem 5%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 4rem;
+        }
+
+        .values-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .value-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .value-card p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 6rem 5%;
+        }
+
+        .team-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff, #f0f0f0);
+            margin: 0 auto 1.5rem;
+        }
+
+        .member-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 6rem 5%;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            width: 45%;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateX(-10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:hover {
+            transform: translateX(10px);
+        }
+
+        .timeline-year {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .timeline-text {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .page-hero h1 { font-size: 2.5rem; }
+            .story-content { grid-template-columns: 1fr; }
+            .timeline::before { left: 20px; }
+            .timeline-content { width: 100%; margin-left: 60px !important; }
+            .timeline-content:hover { transform: translateX(0) !important; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">InnovateDG</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+            </ul>
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-solid">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <h1>About InnovateDG</h1>
+        <p>We're a passionate team of innovators, creators, and problem-solvers dedicated to transforming the digital landscape one project at a time.</p>
+    </section>
+
+    <section class="story-section">
+        <div class="story-content">
+            <div class="story-text">
+                <h2>Our Story</h2>
+                <p>Founded in 2015, InnovateDG emerged from a simple vision: to bridge the gap between innovative technology and practical business solutions. What started as a small team of three passionate developers has grown into a thriving community of over 150 talented professionals.</p>
+                <p>Throughout our journey, we've remained committed to our core belief that technology should empower, not complicate. Every project we undertake is guided by this philosophy, ensuring that our clients receive solutions that are both cutting-edge and accessible.</p>
+                <p>Today, we're proud to serve clients across diverse industries, from startups finding their footing to established enterprises seeking digital transformation. Our success is measured not just in projects delivered, but in the lasting partnerships we build and the tangible impact we create.</p>
+            </div>
+            <div class="story-image">📚</div>
+        </div>
+    </section>
+
+    <section class="mission-section">
+        <div class="mission-grid">
+            <div class="mission-card">
+                <h3>Our Mission</h3>
+                <p>To empower businesses with innovative digital solutions that drive growth, enhance efficiency, and create meaningful connections with their audiences. We believe in making technology work for people, not the other way around.</p>
+            </div>
+            <div class="mission-card">
+                <h3>Our Vision</h3>
+                <p>To be the global leader in digital innovation, recognized for our commitment to excellence, ethical practices, and transformative impact on businesses worldwide. We envision a future where technology seamlessly integrates with human creativity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <h2 class="section-title">Our Core Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">💎</div>
+                <h4>Excellence</h4>
+                <p>We pursue excellence in everything we do, from the smallest detail to the biggest deliverable. Quality is never negotiable.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h4>Integrity</h4>
+                <p>We operate with honesty and transparency, building trust through our actions and maintaining the highest ethical standards.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🚀</div>
+                <h4>Innovation</h4>
+                <p>We embrace change and constantly push boundaries, exploring new technologies and methodologies to deliver better solutions.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">💡</div>
+                <h4>Collaboration</h4>
+                <p>We believe in the power of teamwork and open communication, both within our team and with our clients and partners.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2 class="section-title">Meet Our Leadership</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <h3 class="member-name">Alexandra Chen</h3>
+                <p class="member-role">Chief Executive Officer</p>
+                <p class="member-bio">With over 15 years of experience in tech leadership, Alexandra guides our strategic vision and fosters a culture of innovation and excellence throughout the organization.</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <h3 class="member-name">Michael Torres</h3>
+                <p class="member-role">Chief Technology Officer</p>
+                <p class="member-bio">Michael leads our technical strategy, ensuring we stay at the forefront of technological advancement while maintaining the highest standards of code quality and system architecture.</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <h3 class="member-name">Sophia Williams</h3>
+                <p class="member-role">Chief Design Officer</p>
+                <p class="member-bio">Sophia brings her passion for user-centered design to every project, leading a talented team that creates beautiful, intuitive experiences that users love.</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo"></div>
+                <h3 class="member-name">David Park</h3>
+                <p class="member-role">Chief Operations Officer</p>
+                <p class="member-bio">David ensures smooth operations across all departments, optimizing processes and ensuring that every project is delivered on time and exceeds expectations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <h2 class="section-title">Our Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2015</div>
+                    <h3 class="timeline-title">The Beginning</h3>
+                    <p class="timeline-text">InnovateDG was founded by three visionary developers in a small office, driven by a passion to create exceptional digital experiences.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2017</div>
+                    <h3 class="timeline-title">First Major Milestone</h3>
+                    <p class="timeline-text">Reached 50 employees and completed our 100th project, establishing ourselves as a trusted partner in the digital space.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2019</div>
+                    <h3 class="timeline-title">Global Expansion</h3>
+                    <p class="timeline-text">Opened offices in three new countries and began serving clients across five continents, bringing our vision to a global audience.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2021</div>
+                    <h3 class="timeline-title">Innovation Awards</h3>
+                    <p class="timeline-text">Recognized with multiple industry awards for innovation and excellence, cementing our position as industry leaders.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2024</div>
+                    <h3 class="timeline-title">Continued Growth</h3>
+                    <p class="timeline-text">Surpassed 500 completed projects and grew our team to 150+ talented professionals, while maintaining our commitment to quality and innovation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>InnovateDG</h3>
+                <p>Empowering businesses with cutting-edge digital solutions since 2015.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Web Development</a></li>
+                    <li><a href="#">Mobile Apps</a></li>
+                    <li><a href="#">UI/UX Design</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 InnovateDG. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
